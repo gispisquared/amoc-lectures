@@ -1,0 +1,64 @@
+\documentclass{article}
+\title{Assorted Number Theory (S)}
+\usepackage{amsmath,amssymb}
+%\usepackage[margin=1in]{geometry}
+\author{Andres Buritica}
+\date{March 29, 2022}
+\begin{document}
+\maketitle
+\begin{enumerate}
+  \item Let $a$ and $b$ be positive integers, and let $p$ be a prime greater
+    than 3. Prove that
+    \[\binom{ap}{bp}\equiv\binom ab\pmod {p^3}.\]
+  \item Let $n$ be a fixed positive integer. Let
+    $\frac{a_1}{b_1},\ldots,\frac{a_k}{b_k}$ be the rational numbers between 0
+    and 1 inclusive with denominators at most $n$, written in increasing order
+    and lowest terms.
+    \begin{enumerate}
+      \item Prove that for each $i$, $a_{i+1}b_i-a_ib_{i+1}=1$.
+      \item Prove that the rational number $x$ with smallest denominator such
+        that $\frac{a_i}{b_i}<x<\frac{a_{i+1}}{b_{i+1}}$ is
+        $\frac{a_i+a_{i+1}}{b_i+b_{i+1}}$. 
+      \item Which pairs of numbers appear as consecutive $b_i$s?
+    \end{enumerate}
+  \item Let $p$ be a prime. What is the sum of all the generators mod $p$?
+  \item
+    Let $n$ be a positive integer larger than 1.
+    \begin{enumerate}
+      \item Prove that the product of all primes between $\left\lceil\frac
+        n2\right\rceil$ and $n$
+        (not including $\left\lceil\frac n2\right\rceil$) is less than $2^n$.
+      \item Prove that the product of all primes between 1 and $n$ is at most
+        $4^{n-1}$.
+      \item Find some real number $c$ independent of $n$ such that there are at
+        most $\frac{cn}{\log_2 n}$ primes that are at most $n$.
+    \end{enumerate}
+  \item 
+    Let $n$ be a positive integer larger than $2^{2^{2^2}}$.
+    \begin{enumerate}
+      \item Let $p$ be a prime.
+        \begin{itemize}
+          \item Prove that if $p^k\mid\binom{2n}n$ then $p^k<
+            2n$.
+          \item Prove that if $2p\le 2n< 3p$ then $p\nmid\binom{2n}n$.
+        \end{itemize}
+      \item Prove that 
+        \[\prod_{\substack{p^k\|\binom{2n}n\\ p\le n}}p^k<\binom{2n}n.\]
+      \item Find some real number $c$ independent of $n$ such that there are at
+        least $\frac{cn}{\log_2 n}$ primes that are at most $n$.
+    \end{enumerate} 
+    %\item
+    %\begin{enumerate}
+      %\item Let $p$ be an odd prime. Working in mod $p$, let $S$ be a set such
+        %that for any nonzero $a$, $a\in S\iff -a\not\in S$.
+        
+        %Prove that for each $x$, $\left|xS\setminus S\right|$ is even if and
+        %only if $x$ is a quadratic residue mod $p$.
+      %\item Let $p$ and $q$ be distinct odd primes, such that $p$ is 1 mod 4.
+      
+        %Prove that $p$ is a quadratic residue mod $q$ iff $q$ is a quadratic
+        %residue mod $p$.
+      %\item What if instead both $p$ and $q$ are 3 mod 4?
+    %\end{enumerate}
+\end{enumerate}
+\end{document}

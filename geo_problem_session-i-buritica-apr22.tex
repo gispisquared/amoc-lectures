@@ -1,0 +1,437 @@
+\documentclass{article}
+\usepackage[inline]{asymptote}
+\usepackage{enumitem,amsmath}
+\def\asydir{asy}
+\title{Geometry Problem Session (I)}
+\author{Andres Buritica}
+\date{March 31, 2022}
+\begin{document}
+\maketitle
+\begin{asydef}
+  import olympiad;
+  markscalefactor=1;
+\end{asydef}
+Charles' Lemma: In triangle $ABC$, $D$ is the second intersection of the angle
+bisector of $\angle BAC$ with the circumcircle of $\triangle ABC$.
+
+Then, $DB=DC$.
+
+Proof: $\angle BAD=\angle BCD$, $\angle BAD=\angle DAC=\angle DBC$. Therefore
+$\triangle DBC$ is isosceles.
+
+Other stuff:
+\begin{itemize}
+  \item $DI=DB=DC$:
+    \[\angle DIB=\angle DAB+\angle ABI=\angle CAD+\angle IBC=\angle CBD+\angle
+      IBC=\angle IBD.\]
+  \item It works in directed angles!
+
+    For $D$ to be on internal bisector, we must have $\angle BAD=\angle DAC$.
+
+    If we make our angles directed, $\angle BAD=\angle DAC\iff\ D$ is on the
+    internal or external bisector.
+
+  \item Therefore, the same argument using directed angles yields $EB=EC$.
+
+  \item The same proof shows that $DB=DI_A$.
+  \item $D$ is the midpoint of $II_A$.
+  \item $E$ is the midpoint of $I_BI_C$.
+  \item This is the nine-point circle diagram!
+  \item We can also reverse reconstruct: if $D$ is on two of \{internal or
+      external angle bisector of
+    $\angle BAC$, circumcircle of $ABC$, perpendicular bisector of $BC$\} then
+    $D$ is on the third (unless $ABCD$ is a non-cyclic kite).
+\end{itemize}
+Why directed angles are useful:
+
+Let's say the problem was: ``Let $ABC$ be a triangle and let $D\ne A$ be a point
+on the circumcircle of $\triangle ABC$ such that the reflection of $B$ over line
+$AD$ lies on line $AC$. Prove that $DB=DC$."
+
+We did the angle chase for $D$ above.
+The angle chase for $E$ looks like
+\[\angle EBC=\angle EAC=180^\circ-\angle EAB=\angle ECB.\]
+With directed angles those two angle chases look exactly the same; in
+particular, you can write the proof up in half the time.
+\newpage
+\begin{enumerate}[label=G\arabic*.]
+\setcounter{enumi}{2}
+  \item Triangle $ABC$ satisfies $AB>2BC$. Let $D$ be the point on side $AB$
+    such that $AD=BC$. Point $P$ lies on both the bisector of $\angle ABC$ and
+    the perpendicular bisector of $CD$.
+
+    Prove that $P$ lies on the perpendicular bisector of $AB$.
+    \begin{center}
+      \begin{asy}
+        pair A=(-73,13)*3.5, B=(0,0), C=(0,100);
+        pair D=A+(B-A)*length(B-C)/length(B-A);
+        pair P=circumcenter(C,D,incenter(B,C,D));
+        draw(D--C--B--P--A--C--P--D--A);
+        draw(B--D);
+        draw(circumcircle(B,C,D));
+        add(pathticks(B--C,1,.5,3,8));
+        add(pathticks(A--D,1,.5,3,8));
+        label("$A$",A,SW);
+        label("$B$",B,SE);
+        label("$C$",C,NE);
+        label("$D$",D,S);
+        label("$P$",P,N);
+        add(pathticks(D--P,2,.5,3,8));
+        add(pathticks(P--C,2,.5,3,8));
+
+        // CONSTRUCTION 1:
+          // pair E=A+B-D;
+          // draw(C--E--P);
+          // label("$E$",E,W);
+          // add(pathticks(B--E,1,.5,3,8));
+          // add(pathticks(P--E,2,.5,3,8));
+      \end{asy}
+    \end{center}
+    Lemma: $HA=HG\iff H$ on perp bisector of $AG$.
+
+    Proof: if $H$ lies on perp bisector, then
+    $\triangle HAG\cong\triangle HFG$ (SAS) so $HA=HF$. If $HA=HF$ then
+    $\triangle HAG\cong\triangle HFG$ (SSS) so $\angle HGA=\angle HGF$ so
+    they're both $90^\circ$ and $H$ lies on the perpendicular bisector.
+
+    $P$ lies on the angle bisector of $\angle CBD$, and $PC=PD$.
+
+    Our diagram suggests that $P$ should be on the circumcircle of $\triangle
+    BDC$.
+
+    To prove this, we can reverse reconstruct.
+
+    Make $P'$ be the second intersection of the angle bisector of $\angle DBC$
+    and the circumcircle of $\triangle BCD$.
+
+    Charles' Lemma tells us that $P'$ is on the perpendicular bisector of $CD$.
+
+    Since $P$ is on the angle bisector of $\angle CBD$ and the perpendicular
+    bisector of $CD$, we would like to conclude $P=P'$.
+
+    Since $AB>2BC$ we get that $BC<BD$. Since the angle bisector is not
+    perpendicular to $CD$, we get that $P=P'$ (unique point of intersection).
+
+    Solution:
+
+    Since $AB>2BC$ we get that $BC<BD$. Since $BC\ne BD,\ P$ lies on the angle
+    bisector of $\angle CBD$ and the perpendicular bisector of $CD$, it's well
+    known that $P$ is on the circumcircle of $\triangle BCD$.
+
+    So $\angle PCB=\angle PDA$. Since $PC=PD$ and $CB=DA$, we get $\triangle
+    PCB\cong\triangle PDA$ (SAS). This gets us $PB=PA$, which means that $P$
+    lies on the PB of $AB$.
+    \newpage
+    \begin{center}
+      \begin{asy}
+        pair A=(-73,13)*3.5, B=(0,0), C=(0,100);
+        pair D=A+(B-A)*length(B-C)/length(B-A);
+        pair P=circumcenter(C,D,incenter(B,C,D));
+        draw(D--C--B--P--A--C--P--D--A);
+        draw(B--D);
+        draw(circumcircle(B,C,D));
+        add(pathticks(B--C,1,.5,3,8));
+        add(pathticks(A--D,1,.5,3,8));
+        label("$A$",A,SW);
+        label("$B$",B,SE);
+        label("$C$",C,NE);
+        label("$D$",D,S);
+        label("$P$",P,N);
+        add(pathticks(D--P,2,.5,3,8));
+        add(pathticks(P--C,2,.5,3,8));
+
+          pair E=A+B-D;
+          draw(C--E--P);
+          label("$E$",E,W);
+          add(pathticks(B--E,1,.5,3,8));
+          add(pathticks(P--E,2,.5,3,8));
+      \end{asy}
+    \end{center}
+    Another way to prove $P$ is on the circumcircle:
+
+    Construct point $E$ such that $BE=BC$. Important to note that $D$ and $E$ are
+    distinct since $AD+EB=2BC<AB$.
+
+    $P$ is on the bisector of $\angle EBC$ which is the perpendicular bisector of
+    $EC$.
+
+    $PE=PC=PD$.
+    $\triangle PEB\cong\triangle PCB$ (SSS).
+
+    To finish the problem from here, note that $P$ is on the PB of $DE$, which
+    is also the perpendicular bisector of $AB$.
+
+    To show that $PBCD$ is cyclic, we can angle chase \[\angle PDE=\angle
+      PED=180^\circ-\angle PEB=180^\circ-\angle PCB.\]
+    Or in directed angles: \[\angle PDE=\angle DEP=\angle BEP=\angle PCB.\]
+    \newpage
+  \item
+    Let $ABCD$ be a square and let $E$ be a point on the side $BC$. Let $Y$ be
+    the point where the line $AE$ meets line $CD$ and let $X$ be the point where
+    line $DE$ meets line $AB$. Let $F$ be the intersection of lines $BY$ and
+    $CX$.
+
+    Show that point $E$ lies on the bisector of angle $BFC$.
+    \begin{center}
+      \begin{asy}
+        pair A=(-100,100),B=(0,100),C=(0,0),D=(-100,0),E=(0,40);
+        draw(A--B--C--D--A);
+        pair X=extension(A,B,D,E), Y=extension(C,D,A,E);
+        draw(B--Y--C--X--B);
+        draw(A--Y);
+        draw(D--X);
+        label("$A$",A,NW);
+        label("$B$",B,N);
+        label("$C$",C,S);
+        label("$D$",D,SW);
+        label("$X$",X,NE);
+        label("$Y$",Y,SE);
+        label("$E$",E,NE);
+        pair F=extension(C,X,B,Y);
+        label("$F$",F,N);
+
+        // CONSTRUCTION 1:
+          // pair E1=A+(C-B)/(A-B)*(E-B),E2=D-(D-C)/(B-C)*(E-C);
+          // draw(E2--E--E1);
+          // label("$E_1$",E1,N);
+          // label("$E_2$",E2,S);
+
+        // CONSTRUCTION 2:
+          // pair Z=(A+C)/2;
+          // draw(A--C);
+          // draw(B--D);
+          // label("$Z$",Z,W);
+      \end{asy}
+    \end{center}
+
+    $\triangle AEB\sim\triangle YEC$ (parallel lines) gives
+    $\frac{AB}{CY}=\frac{BE}{EC}.$
+
+    But $AB=BC$ so
+    $\frac{AB}{CY}=\frac{BC}{CY}=\frac{BE}{EC}.$
+
+    Similarly, we have $\frac{BC}{BX}=\frac{EC}{BE}$.
+
+    Flip that to get
+    $\frac{BX}{BC}=\frac{BE}{EC}=\frac{BC}{CY}$.
+
+    Since $\angle XBC=\angle BCY=90^\circ$, we get that $\triangle
+    BXC\sim\triangle CBY.$
+
+    Also, $\triangle BFX\sim\triangle YFC$ (AA)
+
+    We length chase:
+    \begin{align*}
+      \frac{BF}{FC}&=\frac{BF}{FY}\times\frac{FY}{FC} \\
+      \frac{BF}{FY}&=\frac{BX}{CY} \\
+                   &=\frac{BX}{BC}\times\frac{BC}{CY} \\
+                   &=\left(\frac{BE}{EC}\right)^2 \\
+      \frac{FY}{FC}&=\frac{FB}{FX} \\
+      \frac{FY}{FC}&=\frac{FY+FB}{FC+FX} & \text{(addendo)} \\
+                   &=\frac{BY}{CX} \\
+                   &=\frac{CY}{BC} \\
+                   &=\frac{EC}{BE}
+   \end{align*}
+   So
+   \begin{align*}
+      \frac{BF}{FC}&=\left(\frac{BE}{EC}\right)^2\times\frac{EC}{BE} \\
+                   &=\frac{BE}{EC}.
+    \end{align*}
+    Done by converse of angle bisector theorem.
+
+    Addendo:
+
+    If we have that $\frac ab=\frac cd$, then they're also equal to
+    \[\frac{a+c}{b+d}.\]
+
+    Proof: let $a=kb,\ c=kd$ and so $a+c=k(b+d)$.
+
+    General remark: this problem had many solutions, none of which were
+    particularly easy to find --- it did mean, however, that if you persevered
+    with any reasonable approach you were likely to solve the problem.
+
+    Additional solution approaches:
+    \begin{itemize}
+      \item $\triangle BXC\sim\triangle CBY$ implies $\angle BFC=90^\circ$, so
+        $\triangle BFC\sim\triangle BCY$ so
+        $\frac{BF}{FC}=\frac{BC}{CY}=\frac{BE}{EC}.$
+      \item Construct parallels to $BY$ and $CX$ through $E$ and intersect with
+        $AB$ and $CD$, then use congruent triangles to prove perpendicularity.
+      \item Construct the centre of the square; prove cyclic (perpendiculars),
+        collinear (Pappus) and angle bisector (Charles).
+      \item Use Pythagoras to find $\frac{BY}{CX}$ instead of similar triangles.
+      \item Prove perpendicularity using $BC^2+XY^2=BX^2+CY^2$.
+      \item Coordinates.
+    \end{itemize}
+    \newpage
+  \item
+    Let $ABCD$ be a convex quadrilateral such that $AB=CD$. The lines $AB$ and
+    $CD$ intersect at the point $E$, and the circumcircles of the triangles
+    $ABC$ and $BDE$ intersect at $B$ and $F$. Let $P$ be the intersection of the
+    lines $AC$ and $BF$.
+
+    Prove that $EP$ is the bisector of $\angle AED$.
+    \begin{center}
+      \begin{asy}
+        pair A=(13,73), B=(0,0), C=(100,0), D1=(2.4,1),D=D1/length(D1)*length(A)+C;
+        pair E=extension(A,B,C,D);
+        draw(A--B--C--D--A);
+        label("$A$",A,NW);
+        label("$B$",B,SW);
+        label("$C$",C,SE);
+        label("$D$",D,NE);
+        draw(B--E--C);
+        label("$E$",E,W);
+        draw(circumcircle(A,B,C));
+        draw(circumcircle(B,D,E));
+        pair F=intersectionpoints(circumcircle(A,B,C),circumcircle(B,D,E))[0];
+        draw(B--F);
+        draw(A--C);
+        pair P=extension(A,C,B,F);
+        label("$F$",F,NE);
+        label("$P$",P,S);
+        add(pathticks(A--B,1,.5,3,8));
+        add(pathticks(C--D,1,.5,3,8));
+        draw(E--P);
+
+        // CONSTRUCTION 1:
+        //  pair X=intersectionpoints(circumcircle(B,D,E),circumcircle(A,E,C))[0];
+        //  draw(E--X);
+        //  draw(circumcircle(A,E,C));
+        //  label("$X$",X,NE);
+      \end{asy}
+    \end{center}
+    Motivation:
+    \begin{itemize}
+      \item Miquel point diagram: four circles $BDE,\ ACE,\ ABZ,\ CDZ$ intersect
+        at a point $X$. $X$ is the centre of the spiral symmetry sending $AB$ to
+        $CD$, and $AC$ to $BD$.
+
+        This gives you similar triangles: \[\triangle XAB\sim\triangle XCD,\
+          \triangle XAC\sim\triangle XBD.\]
+
+        We have equal lengths $AB=CD$. Triangles $XAB$ and $XCD$ are now
+        congruent. This means that $XA=XC,\ XB=XD$ and so $X$ lies on the angle
+        bisector of $\angle AEC$.
+      \item We want angles using line $EP$. We get angles from cyclic quads, so
+        if we extend $EP$ to the circumcircle of $BED$ then we get cyclic quads
+        from which angles follow.
+    \end{itemize}
+    \newpage
+    \begin{center}
+      \begin{asy}
+        pair A=(13,73), B=(0,0), C=(100,0), D1=(2.4,1),D=D1/length(D1)*length(A)+C;
+        pair E=extension(A,B,C,D);
+        draw(A--B--C--D--A);
+        label("$A$",A,NW);
+        label("$B$",B,SW);
+        label("$C$",C,SE);
+        label("$D$",D,NE);
+        draw(B--E--C);
+        label("$E$",E,W);
+        draw(circumcircle(A,B,C));
+        draw(circumcircle(B,D,E));
+        pair F=intersectionpoints(circumcircle(A,B,C),circumcircle(B,D,E))[0];
+        draw(B--F);
+        draw(A--C);
+        pair P=extension(A,C,B,F);
+        label("$F$",F,NE);
+        label("$P$",P,S);
+        add(pathticks(A--B,1,.5,3,8));
+        add(pathticks(C--D,1,.5,3,8));
+
+        // CONSTRUCTION 1:
+          pair X=intersectionpoints(circumcircle(B,D,E),circumcircle(A,E,C))[0];
+          draw(E--X);
+          draw(circumcircle(A,E,C));
+          label("$X$",X,NE);
+      \end{asy}
+    \end{center}
+
+    Solution:
+
+    Construct $X$ as the intersection of the circumcircles of $AEC$ and $BED$.
+
+    We need to prove:
+    \begin{itemize}
+      \item $P$ lies on $EX$. This is true from the radical axis theorem:
+
+        $AXCE,\ BXFE,\ ABCF$ are cyclic so $AC,\ BF,\ EX$ are concurrent (at
+        $P$).
+      \item $X$ lies on the angle bisector of $\angle AED$.
+
+        \[\angle XAB=180^\circ-\angle XCE=\angle XCD,\]\[\angle
+          XBA=180^\circ-\angle XBE=\angle XDE.\]
+        $\angle XAB=\angle XCD,\ \angle XBA=\angle XDC,\ AB=CD$ so by AAS,
+        \[\triangle
+        XAB\cong\triangle XCD.\] Therefore $XA=XC$ so \[\angle XEA=\angle
+        XCA=\angle CAX=\angle CEX\] so we get $X$ lies on the angle bisector.
+        (Or quote Charles' Lemma)
+    \end{itemize}
+    \newpage
+
+    A minor point: people reverse reconstructed $X$ as the intersection of $EP$
+    with the circumcircle of $BED$. Then to prove that $AXCE$ is cyclic,
+    \[PX\times PE=PF\times PB=PA\times PC.\]
+    However, the converse of POP only holds with directed
+    lengths. Example: $PA\times PC=PB\times PD$ so $ABCD$ is cyclic.
+    But with undirected lengths, we have that $PA\times PC=PB\times PD'$ [where
+    $D'$ is the reflection of $D$ over $P$] but
+    $ABCD'$ is not cyclic.
+    \newpage
+  \item
+    Convex cyclic quadrilateral $ABCD$ satisfies $AB=BC=CD$. Let $\Gamma$ be the
+    circumcircle of $ABCD$. The tangent to $\Gamma$ at $C$ intersects $AD$ at
+    $E$. $BE$ intersects $\Gamma$ again at $F$. $DF$ and $AF$ intersect $BC$ at
+    $G$ and $H$ respectively.
+
+    Prove that the circumcircle of $DGH$ is tangent to $CD$ at $D$.
+    \begin{center}
+      \begin{asy}
+        pair p=(13,80), A=-p, B=(0,0), C=length(B-A)*(1,0)+B,
+        D=C+length(p)*length(p)/p;
+        label("$A$",A,SW);
+        label("$B$",B,NW);
+        label("$C$",C,NE);
+        label("$D$",D,S);
+        draw(circumcircle(A,B,C));
+        add(pathticks(C--D,1,.5,3,8));
+        add(pathticks(A--B,1,.5,3,8));
+        add(pathticks(B--C,1,.5,3,8));
+        pair O=circumcenter(A,B,C);
+        pair E=extension(A,D,C,C+(O-C)*(0,1));
+        label("$E$",E,S);
+        pair F=intersectionpoints(circumcircle(A,B,C),B--E)[0];
+        pair G=extension(D,F,B,C);
+        pair H=extension(A,F,B,C);
+        draw(D--C--B--A--E--C--H--A);
+        draw(H--D);//--G);
+        draw(B--E);
+        label("$F$",F,SE);
+        //label("$G$",G,N);
+        label("$H$",H,N);
+      \end{asy}
+    \end{center}
+    STP: $\angle CDG=\angle DHG$.
+
+    But $\angle CDG=\angle CDF=\angle CBF=\angle CBE$.
+
+    STP: $\angle CBE=\angle DHC$.
+
+    We were given $AB=BC=CD$, and we were given $ABCD$ cyclic. That means that
+    $ABCD$ is an isosceles trapezium, so $BC\|AD$.
+
+    Since $BC\|AD,\ \angle CBE=\angle DEB$. STP: \[\angle DEB=\angle DHB\iff
+      BHED \text{ cyclic}.\]
+
+    STP: $\angle BDA=\angle BHE.$
+
+    We have $\angle BDA=\angle CDB=\angle CFB$.
+
+    STP: $\angle CFB=\angle CHE\iff CHEF$ cyclic.
+
+    STP: $\angle EFH=\angle ECH$.
+    
+    But we have $\angle EFH=\angle BFA=\angle CFB=\angle CDB=\angle ECH$.
+\end{enumerate}
+\end{document}

@@ -1,0 +1,1228 @@
+\documentclass{beamer}
+\usepackage[inline]{asymptote}
+\usetheme{default}
+\def\asydir{asy}
+\title{I --- Congruence and Similarity}
+\author{Andres Buritica}
+\date{December 8, 2021}
+\begin{document}
+\begin{asydef}
+  import olympiad;
+  markscalefactor=1;
+\end{asydef}
+\begin{frame}[fragile]
+  \titlepage{}
+\end{frame}
+\section{Intro}
+  \subsection{Congruence}
+    \begin{frame}[fragile]
+      \frametitle{Congruence}
+      We say that triangles $ABC$ and $XYZ$ are \emph{congruent} if $$BC=YZ,\ CA=ZX,\
+      AB=XY,\ \angle BAC=\angle YXZ,$$
+      $$\angle ABC=\angle XYZ,\ \angle ACB=\angle XZY.$$
+
+      If all of these conditions are true then we can write $$\triangle
+      ABC\cong\triangle XYZ.$$ We also know that $|ABC| = |XYZ|$.
+      
+      \begin{center}
+        \begin{asy}
+          pair A=(13,73), B=(0,0), C=(100,0);
+          pair offset=(150,0);
+          pair X=A+offset, Y=B+offset, Z=C+offset;
+          label("$A$",A,N);
+          label("$B$",B,SW);
+          label("$C$",C,SE);
+          label("$X$",X,N);
+          label("$Y$",Y,SW);
+          label("$Z$",Z,SE);
+          draw(A--B--C--A);
+          draw(X--Y--Z--X);
+          add(pathticks(A--B,1,.5,3,8));
+          add(pathticks(X--Y,1,.5,3,8));
+          add(pathticks(B--C,2,.5,3,8));
+          add(pathticks(Y--Z,2,.5,3,8));
+          add(pathticks(C--A,3,.5,3,8));
+          add(pathticks(Z--X,3,.5,3,8));
+          draw(anglemark(B,A,C));
+          draw(anglemark(Y,X,Z));
+          draw(anglemark(A,C,B,8,10,12));
+          draw(anglemark(X,Z,Y,8,10,12));
+          draw(anglemark(C,B,A,8,10));
+          draw(anglemark(Z,Y,X,8,10));
+        \end{asy}
+      \end{center}
+    \end{frame}
+    \begin{frame}
+      \frametitle{Congruence tests}
+      \begin{itemize}
+        \item A \emph{congruence test} is a set of properties that uniquely
+          specify the triangle \pause
+        \item Example: construct triangles with $BC=10$, area 20 and $\angle
+          BAC=60^\circ$. \pause
+        \item Then if two triangles have the same properties, they must be the
+          same i.e. be congruent \pause
+        \item For instance, we've just shown that if two triangles have the same
+          area, a side of the same length, and the same angle opposite that
+          side then they must be congruent \pause
+        \item Though I have seen that test used in a problem before, what
+          follows are the canonical congruence tests that are more likely
+          to come up
+      \end{itemize}
+    \end{frame}
+    \begin{frame}[fragile]
+      \frametitle{SSS}
+      If $BC=YZ,\ CA=ZX,\ AB=XY$ then $\triangle ABC\cong\triangle XYZ$.
+      \begin{center}
+        \begin{asy}
+          pair A=(13,73), B=(0,0), C=(100,0);
+          pair offset=(150,0);
+          pair X=A+offset, Y=B+offset, Z=C+offset;
+          label("$A$",A,N);
+          label("$B$",B,SW);
+          label("$C$",C,SE);
+          label("$X$",X,N);
+          label("$Y$",Y,SW);
+          label("$Z$",Z,SE);
+          draw(A--B--C--A);
+          draw(X--Y--Z--X);
+          add(pathticks(A--B,1,.5,3,8));
+          add(pathticks(X--Y,1,.5,3,8));
+          add(pathticks(B--C,2,.5,3,8));
+          add(pathticks(Y--Z,2,.5,3,8));
+          add(pathticks(C--A,3,.5,3,8));
+          add(pathticks(Z--X,3,.5,3,8));
+        \end{asy}
+      \end{center}
+    \end{frame}
+    \begin{frame}[fragile]
+      \frametitle{SAS}
+      If $AB=XY,\ \angle ABC=\angle XYZ,\ BC=YZ$ then $\triangle
+      ABC\cong\triangle XYZ$.
+      \begin{center}
+        \begin{asy}
+          pair A=(13,73), B=(0,0), C=(100,0);
+          pair offset=(150,0);
+          pair X=A+offset, Y=B+offset, Z=C+offset;
+          label("$A$",A,N);
+          label("$B$",B,SW);
+          label("$C$",C,SE);
+          label("$X$",X,N);
+          label("$Y$",Y,SW);
+          label("$Z$",Z,SE);
+          draw(A--B--C--A);
+          draw(X--Y--Z--X);
+          add(pathticks(A--B,1,.5,3,8));
+          add(pathticks(X--Y,1,.5,3,8));
+          add(pathticks(B--C,2,.5,3,8));
+          add(pathticks(Y--Z,2,.5,3,8));
+          draw(anglemark(C,B,A));
+          draw(anglemark(Z,Y,X));
+        \end{asy}
+      \end{center}
+    \end{frame}
+    \begin{frame}[fragile]
+      \frametitle{AAS}
+      If $\angle ABC=\angle XYZ,\ \angle BCA=\angle YZX,\ BC=YZ$ then $\triangle
+      ABC\cong\triangle XYZ$.
+      \begin{center}
+        \begin{asy}
+          pair A=(13,73), B=(0,0), C=(100,0);
+          pair offset=(150,0);
+          pair X=A+offset, Y=B+offset, Z=C+offset;
+          label("$A$",A,N);
+          label("$B$",B,SW);
+          label("$C$",C,SE);
+          label("$X$",X,N);
+          label("$Y$",Y,SW);
+          label("$Z$",Z,SE);
+          draw(A--B--C--A);
+          draw(X--Y--Z--X);
+          add(pathticks(B--C,1,.5,3,8));
+          add(pathticks(Y--Z,1,.5,3,8));
+          draw(anglemark(C,B,A));
+          draw(anglemark(Z,Y,X));
+          draw(anglemark(A,C,B,8,10));
+          draw(anglemark(X,Z,Y,8,10));
+        \end{asy}
+      \end{center}
+    \end{frame}
+    \begin{frame}[fragile]
+      \frametitle{SSA?}
+      If $AB=XY,\ BC=YZ,\ \angle BCA=\angle YZX$ then you don't necessarily know
+      $\triangle ABC\cong\triangle XYZ$.
+      \begin{center}
+        \begin{asy}
+          pair A=(13,73), B=(0,0), C=(100,0);
+          path circ1=Circle(B,length(A-B));
+          pair offset=(150,0);
+          pair X, Y=B+offset, Z=C+offset;
+          X=intersectionpoints(circ1,A--C)[0]+offset;
+          label("$A$",A,N);
+          label("$B$",B,SW);
+          label("$C$",C,SE);
+          label("$X$",X,N);
+          label("$Y$",Y,SW);
+          label("$Z$",Z,SE);
+          draw(A--B--C--A);
+          draw(X--Y--Z--X);
+          add(pathticks(B--C,2,.5,3,8));
+          add(pathticks(Y--Z,2,.5,3,8));
+          add(pathticks(A--B,1,.5,3,8));
+          add(pathticks(X--Y,1,.5,3,8));
+          draw(anglemark(A,C,B));
+          draw(anglemark(X,Z,Y));
+        \end{asy}
+      \end{center}
+    \end{frame}
+    \begin{frame}[fragile]
+      \frametitle{Fixed SSA}
+      If $AB=XY,\ BC=YZ,\ \angle BCA=\angle YZX$ \textbf{and $AB>BC$} then
+      $\triangle ABC\cong\triangle XYZ$.
+      \begin{center}
+        \begin{asy}
+          pair A=(20,80), B=(0,0), C=(70,0);
+          path circ1=Circle(B,length(A-B));
+          pair offset=(150,0);
+          pair X, Y=B+offset, Z=C+offset;
+          X=intersectionpoints(circ1,A--C)[0]+offset;
+          label("$A$",A,N);
+          label("$B$",B,SW);
+          label("$C$",C,SE);
+          label("$X$",X,N);
+          label("$Y$",Y,SW);
+          label("$Z$",Z,SE);
+          draw(A--B--C--A);
+          draw(X--Y--Z--X);
+          add(pathticks(B--C,2,.5,3,8));
+          add(pathticks(Y--Z,2,.5,3,8));
+          add(pathticks(A--B,1,.5,3,8));
+          add(pathticks(X--Y,1,.5,3,8));
+          draw(anglemark(A,C,B));
+          draw(anglemark(X,Z,Y));
+        \end{asy}
+      \end{center}
+    \end{frame}
+    \begin{frame}[fragile]
+      \frametitle{Fixed SSA}
+      Why does this work? The other intersection is on the wrong side of $BC$.
+      \begin{center}
+        \begin{asy}
+          pair A=(20,80), B=(0,0), C=(70,0);
+          path circ1=Circle(B,length(A-B));
+          real[] X=intersections(circ1,A,C);
+          pair P=point(circ1,X[1]);
+          label("$A$",A,N);
+          label("$B$",B,SW);
+          label("$C$",C,SW);
+          label("$A'$",P,E);
+          draw(circ1);
+          draw(C--A--B--C--P);
+          draw(anglemark(A,C,B));
+        \end{asy}
+      \end{center}
+    \end{frame}
+    \begin{frame}[fragile]
+      \frametitle{RHS}
+      This is a special case of fixed SSA.
+
+      If $AB=XY,\ BC=YZ,\ \angle BCA=\angle YZX=90^\circ$ then $\triangle
+      ABC\cong\triangle XYZ$.
+      \begin{center}
+        \begin{asy}
+          pair A=(70,100), B=(0,0), C=(70,0);
+          path circ1=Circle(B,length(A-B));
+          pair offset=(150,0);
+          pair X, Y=B+offset, Z=C+offset;
+          X=intersectionpoints(circ1,A--C)[0]+offset;
+          label("$A$",A,N);
+          label("$B$",B,SW);
+          label("$C$",C,SE);
+          label("$X$",X,N);
+          label("$Y$",Y,SW);
+          label("$Z$",Z,SE);
+          draw(A--B--C--A);
+          draw(X--Y--Z--X);
+          add(pathticks(B--C,2,.5,3,8));
+          add(pathticks(Y--Z,2,.5,3,8));
+          add(pathticks(A--B,1,.5,3,8));
+          add(pathticks(X--Y,1,.5,3,8));
+          draw(rightanglemark(A,C,B,5));
+          draw(rightanglemark(X,Z,Y,5));
+        \end{asy}
+      \end{center}
+    \end{frame}
+  \subsection{Similarity}
+    \begin{frame}[fragile]
+      \frametitle{Similarity}
+      We say that triangles $ABC$ and $XYZ$ are \emph{similar} if
+      $$\frac{BC}{YZ}=\frac{CA}{ZX}=\frac{AB}{XY}=r,$$
+      $$\angle ABC=\angle XYZ,\
+      \angle BCA=\angle YZX,\ \angle CAB=\angle ZXY.$$
+
+      If all of these conditions are true then we can write $$\triangle
+      ABC\sim\triangle XYZ.$$ We also know that $\frac{|ABC|}{|XYZ|}=r^2$.
+
+      \begin{center}
+        \begin{asy}
+          pair A=(13,73), B=(0,0), C=(100,0);
+          pair offset=(150,0);
+          pair X=A/2+offset, Y=B/2+offset, Z=C/2+offset;
+          label("$A$",A,N);
+          label("$B$",B,SW);
+          label("$C$",C,SE);
+          label("$X$",X,N);
+          label("$Y$",Y,SW);
+          label("$Z$",Z,SE);
+          draw(A--B--C--A);
+          draw(X--Y--Z--X);
+          add(pathticks(A--B,1,.5,3,8));
+          add(pathticks(X--Y,1,.5,3,8));
+          add(pathticks(B--C,2,.5,3,8));
+          add(pathticks(Y--Z,2,.5,3,8));
+          add(pathticks(C--A,3,.5,3,8));
+          add(pathticks(Z--X,3,.5,3,8));
+          draw(anglemark(B,A,C));
+          draw(anglemark(Y,X,Z));
+          draw(anglemark(A,C,B,8,10,12));
+          draw(anglemark(X,Z,Y,8,10,12));
+          draw(anglemark(C,B,A,8,10));
+          draw(anglemark(Z,Y,X,8,10));
+        \end{asy}
+      \end{center}
+    \end{frame}
+    \begin{frame}[fragile]
+      \frametitle{Similarity}
+      Triangles can be directly similar or oppositely similar. For example,
+      $\triangle ABC$ is directly similar to $\triangle XYZ$ and oppositely
+      similar to $\triangle X'YZ$.
+
+      We write: $\triangle ABC\overset +\sim\triangle XYZ$, $\triangle
+      ABC\overset -\sim\triangle X'YZ$.
+
+      \begin{center}
+        \begin{asy}
+          pair A=(13,73), B=(0,0), C=(100,0);
+          pair offset=(150,30), t=(0.3,0.2);
+          pair X=A*t+offset, Y=B*t+offset, Z=C*t+offset;
+          pair W=2*foot(X,Y,Z)-X;
+          label("$A$",A,N);
+          label("$B$",B,SW);
+          label("$C$",C,SE);
+          label("$X$",X,N);
+          label("$Y$",Y,SW);
+          label("$Z$",Z,SE);
+          label("$X'$",W,S);
+          draw(A--B--C--A);
+          draw(Z--X--Y--Z--W--Y);
+        \end{asy}
+      \end{center}
+    \end{frame}
+    \begin{frame}[fragile]
+      \frametitle{PPP}
+      If $\frac{BC}{YZ}=\frac{CA}{ZX}=\frac{AB}{XY}$ then $\triangle ABC\sim\triangle XYZ$.
+      \begin{center}
+        \begin{asy}
+          pair A=(13,73), B=(0,0), C=(100,0);
+          pair offset=(150,0);
+          pair X=A/2+offset, Y=B/2+offset, Z=C/2+offset;
+          label("$A$",A,N);
+          label("$B$",B,SW);
+          label("$C$",C,SE);
+          label("$X$",X,N);
+          label("$Y$",Y,SW);
+          label("$Z$",Z,SE);
+          draw(A--B--C--A);
+          draw(X--Y--Z--X);
+          add(pathticks(A--B,1,.5,3,8));
+          add(pathticks(X--Y,1,.5,3,8));
+          add(pathticks(B--C,2,.5,3,8));
+          add(pathticks(Y--Z,2,.5,3,8));
+          add(pathticks(C--A,3,.5,3,8));
+          add(pathticks(Z--X,3,.5,3,8));
+        \end{asy}
+      \end{center}
+    \end{frame}
+    \begin{frame}[fragile]
+      \frametitle{PAP}
+      If $\frac{AB}{XY}=\frac{BC}{YZ},\ \angle ABC=\angle XYZ$ then $\triangle
+      ABC\sim\triangle XYZ$.
+      \begin{center}
+        \begin{asy}
+          pair A=(13,73), B=(0,0), C=(100,0);
+          pair offset=(150,0);
+          pair X=A/2+offset, Y=B/2+offset, Z=C/2+offset;
+          label("$A$",A,N);
+          label("$B$",B,SW);
+          label("$C$",C,SE);
+          label("$X$",X,N);
+          label("$Y$",Y,SW);
+          label("$Z$",Z,SE);
+          draw(A--B--C--A);
+          draw(X--Y--Z--X);
+          add(pathticks(A--B,1,.5,3,8));
+          add(pathticks(X--Y,1,.5,3,8));
+          add(pathticks(B--C,2,.5,3,8));
+          add(pathticks(Y--Z,2,.5,3,8));
+          draw(anglemark(C,B,A));
+          draw(anglemark(Z,Y,X));
+        \end{asy}
+      \end{center}
+    \end{frame}
+    \begin{frame}[fragile]
+      \frametitle{AA}
+      If $\angle ABC=\angle XYZ,\ \angle BCA=\angle YZX$ then $\triangle
+      ABC\sim\triangle XYZ$.
+      \begin{center}
+        \begin{asy}
+          pair A=(13,73), B=(0,0), C=(100,0);
+          pair offset=(150,0);
+          pair X=A/2+offset, Y=B/2+offset, Z=C/2+offset;
+          label("$A$",A,N);
+          label("$B$",B,SW);
+          label("$C$",C,SE);
+          label("$X$",X,N);
+          label("$Y$",Y,SW);
+          label("$Z$",Z,SE);
+          draw(A--B--C--A);
+          draw(X--Y--Z--X);
+          draw(anglemark(C,B,A));
+          draw(anglemark(Z,Y,X));
+          draw(anglemark(A,C,B,8,10));
+          draw(anglemark(X,Z,Y,8,10));
+        \end{asy}
+      \end{center}
+    \end{frame}
+    \begin{frame}[fragile]
+      \frametitle{PPA?}
+      If $\frac{AB}{XY}=\frac{BC}{YZ},\ \angle BCA=\angle YZX$ then you don't necessarily know
+      $\triangle ABC\sim\triangle XYZ$.
+      \begin{center}
+        \begin{asy}
+          pair A=(13,73), B=(0,0), C=(100,0);
+          path circ1=Circle(B,length(A-B));
+          pair offset=(150,0);
+          pair X, Y=B/2+offset, Z=C/2+offset;
+          X=intersectionpoints(circ1,A--C)[0]/2+offset;
+          label("$A$",A,N);
+          label("$B$",B,SW);
+          label("$C$",C,SE);
+          label("$X$",X,N);
+          label("$Y$",Y,SW);
+          label("$Z$",Z,SE);
+          draw(A--B--C--A);
+          draw(X--Y--Z--X);
+          add(pathticks(B--C,2,.5,3,8));
+          add(pathticks(Y--Z,2,.5,3,8));
+          add(pathticks(A--B,1,.5,3,8));
+          add(pathticks(X--Y,1,.5,3,8));
+          draw(anglemark(A,C,B));
+          draw(anglemark(X,Z,Y));
+        \end{asy}
+      \end{center}
+    \end{frame}
+    \begin{frame}[fragile]
+      \frametitle{Fixed PPA}
+      If $\frac{AB}{XY}=\frac{BC}{YZ},\ \angle BCA=\angle YZX$ \textbf{and $AB>BC$} then
+      $\triangle ABC\sim\triangle XYZ$.
+      \begin{center}
+        \begin{asy}
+          pair A=(20,80), B=(0,0), C=(70,0);
+          path circ1=Circle(B,length(A-B));
+          pair offset=(150,0);
+          pair X, Y=B/2+offset, Z=C/2+offset;
+          X=intersectionpoints(circ1,A--C)[0]/2+offset;
+          label("$A$",A,N);
+          label("$B$",B,SW);
+          label("$C$",C,SE);
+          label("$X$",X,N);
+          label("$Y$",Y,SW);
+          label("$Z$",Z,SE);
+          draw(A--B--C--A);
+          draw(X--Y--Z--X);
+          add(pathticks(B--C,2,.5,3,8));
+          add(pathticks(Y--Z,2,.5,3,8));
+          add(pathticks(A--B,1,.5,3,8));
+          add(pathticks(X--Y,1,.5,3,8));
+          draw(anglemark(A,C,B));
+          draw(anglemark(X,Z,Y));
+        \end{asy}
+      \end{center}
+    \end{frame}
+    \begin{frame}[fragile]
+      \frametitle{RHS}
+      This is a special case of fixed PPA.
+
+      If $\frac{AB}{XY}=\frac{BC}{YZ},\ \angle BCA=\angle YZX=90^\circ$ then $\triangle
+      ABC\sim\triangle XYZ$.
+      \begin{center}
+        \begin{asy}
+          pair A=(70,100), B=(0,0), C=(70,0);
+          path circ1=Circle(B,length(A-B));
+          pair offset=(150,0);
+          pair X, Y=B+offset, Z=C+offset;
+          X=intersectionpoints(circ1,A--C)[0]+offset;
+          label("$A$",A,N);
+          label("$B$",B,SW);
+          label("$C$",C,SE);
+          label("$X$",X,N);
+          label("$Y$",Y,SW);
+          label("$Z$",Z,SE);
+          draw(A--B--C--A);
+          draw(X--Y--Z--X);
+          add(pathticks(B--C,2,.5,3,8));
+          add(pathticks(Y--Z,2,.5,3,8));
+          add(pathticks(A--B,1,.5,3,8));
+          add(pathticks(X--Y,1,.5,3,8));
+          draw(rightanglemark(A,C,B,5));
+          draw(rightanglemark(X,Z,Y,5));
+        \end{asy}
+      \end{center}
+    \end{frame}
+\section{Problems}
+  \begin{frame}[fragile]
+    \frametitle{Isosceles triangle}
+    Let $ABC$ be a triangle. Prove that $AB=AC$ if and only if $\angle
+    ABC=\angle ACB$. \pause
+    \begin{center}
+      \begin{asy}
+        pair A=(50,30), B=(0,0), C=(100,0);
+        label("$A$",A,N);
+        label("$B$",B,SW);
+        label("$C$",C,SE);
+        draw(A--B--C--cycle);
+      \end{asy}
+    \end{center}
+    \pause
+    \begin{columns}
+      \column{.5\textwidth}
+        Going forward: \pause
+        \begin{itemize}
+          \item $AB=AC$ \pause
+          \item $\triangle ABC\cong\triangle ACB$ (SSS) \pause
+          \item $\angle ABC=\angle ACB$ \pause
+        \end{itemize}
+      \column{.5\textwidth}
+        Going backward: \pause
+        \begin{itemize}
+          \item $\angle ABC=\angle ACB$ \pause
+          \item $\triangle ABC\cong\triangle ACB$ (AAS) \pause
+          \item $AB=AC$
+        \end{itemize}
+    \end{columns}
+  \end{frame}
+  \begin{frame}[fragile]
+    \frametitle{Power of a point}
+    Let $ABCD$ be a cyclic quadrilateral, and let $AC$ and $BD$ meet at $P$.
+    Prove that $PA\times PC=PB\times PD$. \pause
+    \begin{columns}
+      \column{.5\textwidth}
+        \begin{center}
+          \begin{asy}
+            pair A=(39,52), B=(39,-52), D=(-25,60), C=(-60,25);
+            label("$A$",A,N);
+            label("$B$",B,SE);
+            label("$C$",C,W);
+            label("$D$",D,NW);
+            pair P=intersectionpoint(A--C,B--D);
+            draw(A--B--C--D--cycle);
+            draw(A--C);
+            draw(B--D);
+            label("$P$",P,SW);
+            draw(Circle(origin,65));
+          \end{asy}
+        \end{center}
+        \pause
+      \column{.5\textwidth}
+        \begin{itemize}
+          \item $\triangle PAB\sim\triangle PDC$ (AA) \pause
+          \item $\frac{PA}{PB}=\frac{PD}{PC}$ \pause
+          \item $PA\times PC=PB\times PD$
+        \end{itemize}
+    \end{columns}
+  \end{frame}
+  \begin{frame}[fragile]
+    \frametitle{Similar switch}
+    Let $ABC$ and $ADE$ be triangles that are directly similar.
+    Prove that $\triangle ABD$ and $\triangle ACE$ are also directly similar.
+
+    \begin{columns}
+      \column{.5\textwidth}
+        \begin{center}
+          \begin{asy}
+            pair A=(0,0), B=(100,0), C=(80,20), D=(10,50);
+            pair E=(C*D)/B;
+            label("$A$",A,SW);
+            label("$B$",B,SE);
+            label("$C$",C,N);
+            label("$D$",D,NE);
+            label("$E$",E,W);
+            draw(B--A--C);
+            draw(D--A--E);
+            draw(B--C,red);
+            draw(D--E,red);
+            draw(B--D,green);
+            draw(C--E,green);
+          \end{asy}
+        \end{center}
+        \pause
+      \column{.5\textwidth}
+        \begin{itemize}
+          \item $\angle BAD=\angle CAE$ \pause
+          \item $\triangle ABD\sim\triangle ACE$
+        \end{itemize}
+    \end{columns}
+  \end{frame}
+  \begin{frame}[fragile]
+    \frametitle{Ice cream cone}
+    Let $PA$ and $PB$ be tangents to a circle. Prove that $PA=PB$. \pause
+
+    Construction: let $O$ be centre of the circle.
+    \begin{columns}
+      \column{.5\textwidth}
+        \begin{center}
+          \begin{asy}
+            pair O=(0,0), A=(-30,-40), B=(30,-40);
+            pair P=2*A*B/(A+B);
+            label("$A$",A,SW);
+            label("$B$",B,SE);
+            label("$P$",P,S);
+            label("$O$",O,N);
+            draw(Circle(O,length(A)));
+            draw(B--O--A--P--B--A);
+            draw(P--O);
+          \end{asy}
+        \end{center}
+        \pause
+      \column{.5\textwidth}
+        \begin{itemize}
+          \item $\triangle PAO\cong\triangle PBO$ \pause
+          \item $PA=PB$
+        \end{itemize}
+    \end{columns}
+  \end{frame}
+  \begin{frame}[fragile]
+    \frametitle{Similar figures}
+    Let points $ABCDWXYZ$ be such that $\triangle ABC\overset +\sim\triangle
+    WXY$ and $\triangle BCD\overset +\sim\triangle XYZ$. Prove that $\triangle
+    ABD\sim\triangle WXZ$ and $\triangle ACD\sim\triangle WYZ$.
+    \begin{columns}
+      \column{.5\textwidth}
+        \begin{center}
+          \begin{asy}
+            pair A=(13,73), B=(0,0), C=(100,0), D=(50,20);
+            pair x=(30,-20), y=(0,-0.5);
+            pair W=A*y+x, X=B*y+x, Y=C*y+x, Z=D*y+x;
+            draw(A--B--C--D--A--C);
+            draw(B--D);
+            draw(W--X--Y--Z--W--Y);
+            draw(X--Z);
+            label("$A$",A,N);
+            label("$B$",B,SW);
+            label("$C$",C,SE);
+            label("$X$",X,NW);
+            label("$Y$",Y,S);
+            label("$Z$",Z,(N+NE)/2);
+            label("$W$",W,E);
+            label("$D$",D,(3*NW+SW)/4);
+          \end{asy}
+        \end{center}
+        \pause
+      \column{.5\textwidth}
+        \begin{itemize}
+          \item $\triangle ABD\sim\triangle WXZ$ \pause
+          \item $\triangle ACD\sim\triangle WYZ$ \pause
+        \end{itemize}
+        In this case we say that $ABCD$ and $WXYZ$ are similar figures, written
+        $ABCD\overset +\sim WXYZ$. \pause
+
+        All of this still works if the triangles are instead oppositely similar.
+    \end{columns}
+  \end{frame}
+  \begin{frame}[fragile]
+    \frametitle{Menelaus}
+    Let $ABC$ be a triangle. Let $X,Y,Z$ be collinear points on sides $BC,CA,AB$
+    respectively.
+
+    Prove that \[\frac{AZ}{ZB}\times\frac{BX}{XC}\times\frac{CY}{YA}=-1.\]\pause
+
+    Construction: let $P,Q,R$ be the bases of the perpendiculars from $A,B,C$ to
+    $XYZ$.
+    \begin{columns}
+      \column{.5\textwidth}
+        \begin{center}
+          \begin{asy}
+            pair A=(13,73)*0.8, B=(0,0), C=(100,0)*0.8;
+            pair X=0.7*C, Z=0.4*A;
+            pair Y=extension(X,Z,A,C);
+            label("$A$",A,N);
+            label("$B$",B,SW);
+            label("$C$",C,NE);
+            label("$X$",X,S);
+            label("$Y$",Y,N);
+            label("$Z$",Z,SW);
+            pair P=foot(A,X,Z), Q=foot(B,X,Z), R=foot(C,X,Z);
+            draw(A--P--Y--A--B--C--R);
+            draw(B--Q);
+            label("$P$",P,W);
+            label("$Q$",Q,NE);
+            label("$R$",R,SW);
+            draw(rightanglemark(A,P,Z,5));
+            draw(rightanglemark(B,Q,X,5));
+            draw(rightanglemark(C,R,Y,5));
+          \end{asy}
+        \end{center}
+        \pause
+      \column{.5\textwidth}
+        \begin{itemize}
+          \item $\frac{BX}{XC}=\frac{BQ}{CR}$ \pause
+          \item $\frac{AZ}{ZB}\times\frac{BX}{XC}\times\frac{CY}{YA}=1$
+            \pause
+          \item Why is it -1?
+        \end{itemize}
+    \end{columns}
+  \end{frame}
+  \begin{frame}[fragile]
+    \frametitle{Homothetic triangles}
+    Let $ABC$ and $XYZ$ be two triangles such that $BC||YZ,\ CA||ZX,\ AB||XY$.
+    Prove that $AX,\ BY$ and $CZ$ are concurrent.\pause
+
+    Reverse reconstruction: let $P$ be the intersection of $BY$ and $CZ$. We
+    prove $AX$ passes through $P$.
+    \begin{columns}
+      \column{.5\textwidth}
+        \begin{center}
+          \begin{asy}
+            pair A=(13,73), B=(0,0), C=(100,0);
+            pair X=A/2+(10,15), Y=B/2+(10,15), Z=C/2+(10,15);
+            draw(A--B,red);
+            draw(X--Y,red);
+            draw(A--C,green);
+            draw(X--Z,green);
+            draw(B--C,blue);
+            draw(Y--Z,blue);
+            pair P=extension(B,Y,C,Z);
+            draw(A--P,dashed);
+            draw(B--P);
+            draw(C--P);
+            label("$A$",A,N);
+            label("$B$",B,SW);
+            label("$C$",C,SE);
+            label("$X$",X,NE);
+            label("$Y$",Y,S);
+            label("$Z$",Z,S);
+            label("$P$",P,S);
+          \end{asy}
+        \end{center}
+        \pause
+      \column{.5\textwidth}
+        \begin{itemize}
+          \item $ABCP\sim XYZP$ \pause
+          \item $PAX$ collinear
+        \end{itemize}
+    \end{columns}
+  \end{frame}
+  \begin{frame}[fragile]
+    \frametitle{Pythagoras}
+    Let $ABC$ be a triangle such that $\angle BAC=90^\circ$. Prove that
+    $AB^2+AC^2=BC^2$. \pause
+
+    Construction: let $D$ be the base of the perpendicular from $A$ to $BC$.
+    \begin{columns}
+      \column{.5\textwidth}
+        \begin{center}
+          \begin{asy}
+            pair A=(0,0), B=(60,0), C=(0,80);
+            label("$A$",A,SW);
+            label("$B$",B,SE);
+            label("$C$",C,N);
+            draw(rightanglemark(B,A,C,5));
+            draw(A--B--C--cycle);
+            pair D=intersectionpoint(B--C,A--(80,60));
+            draw(A--D);
+            label("$D$",D,NE);
+            draw(rightanglemark(A,D,B,5));
+          \end{asy}
+        \end{center}
+        \pause
+      \column{.5\textwidth}
+        \begin{itemize}
+          \item $AB^2=BC\times BD$ \pause
+          \item $AB^2+AC^2=BC^2$
+        \end{itemize}
+    \end{columns}
+  \end{frame}
+  \begin{frame}[fragile]
+    \frametitle{Pythagoras}
+    Let $ABC$ be a triangle such that $\angle BAC=90^\circ$. Prove that
+    $AB^2+AC^2=BC^2$.
+
+    Construction: let $D$ be the base of the perpendicular from $A$ to $BC$.
+    \begin{columns}
+      \column{.5\textwidth}
+        \begin{center}
+          \begin{asy}
+            pair A=(0,0), B=(60,0), C=(0,80);
+            label("$A$",A,SW);
+            label("$B$",B,SE);
+            label("$C$",C,N);
+            draw(rightanglemark(B,A,C,5));
+            draw(A--B--C--cycle);
+            pair D=intersectionpoint(B--C,A--(80,60));
+            draw(A--D);
+            label("$D$",D,NE);
+            draw(rightanglemark(A,D,B,5));
+          \end{asy}
+        \end{center}
+      \column{.5\textwidth}
+        Alternatively:\pause
+        \begin{itemize}
+          \item $\frac{|ABD|}{|ABC|}=\left(\frac{AB}{BC}\right)^2$\pause
+          \item $AB^2+AC^2=BC^2$
+        \end{itemize}
+    \end{columns}
+  \end{frame}
+  \begin{frame}[fragile]
+    \frametitle{Diagonals of a parallelogram}
+    Let $ABCD$ be a parallelogram with $AB||CD$ and $BC||DA$. Let $AC$ intersect
+    $BD$ at $P$, Prove that $P$ is the midpoint of $AC$ and of $BD$.
+    \begin{columns}
+      \column{.5\textwidth}
+        \begin{center}
+          \begin{asy}
+            pair A=(0,0), B=(70,0), C=(100,30);
+            pair D=C-B, P=C/2;
+            draw(A--B--C--D--A);
+            draw(A--C);
+            draw(B--D);
+            label("$A$",A,SW);
+            label("$B$",B,SE);
+            label("$C$",C,NE);
+            label("$D$",D,N);
+            label("$P$",P,(N+NE)/2);
+          \end{asy}
+        \end{center}
+        \pause
+      \column{.5\textwidth}
+        \begin{itemize}
+          \item $\triangle ABC\cong\triangle CDB$ \pause
+          \item $\triangle ABP\cong\triangle CDP$ \pause
+          \item $PA=PC,\ PB=PD$
+        \end{itemize}
+    \end{columns}
+  \end{frame}
+  \begin{frame}[fragile]
+    \frametitle{Alternate segment switch}
+    Let $A,B,C$ be collinear points, and let $D,E$ be points such that $AD=AE$.
+    Prove that if $\angle ADB=\angle ACD$ then $\angle AEB=\angle ACE$. \pause
+
+    \begin{columns}
+      \column{.5\textwidth}
+        \begin{center}
+          \begin{asy}
+            pair A=(0,0), B=(25,0), C=(100,0);
+            pair D=(30,40), E=(40,-30);
+            label("$A$",A,SW);
+            label("$B$",B,SE);
+            label("$C$",C,N);
+            label("$D$",D,NE);
+            label("$E$",E,S);
+            draw(A--C--D--A--E--C);
+            draw(D--B--E);
+            add(pathticks(A--D));
+            add(pathticks(A--E));
+            draw(anglemark(D,C,A),red);
+            draw(anglemark(A,D,B),red);
+          \end{asy}
+        \end{center}
+        \pause
+      \column{.5\textwidth}
+        \begin{itemize}
+          \item $\frac{AE}{AC}=\frac{AB}{AE}$ \pause
+          \item $\angle AEB=\angle ACE$
+        \end{itemize}
+    \end{columns}
+  \end{frame}
+  \begin{frame}[fragile]
+    \frametitle{Ptolemy}
+    Let $ABCD$ be points in that order around a circle. Prove that $AB\times
+    CD+BC\times AD=AC\times BD$. \pause
+
+    Construction: let $P$ be the point on $AC$ such that $AB\times CD=AP\times
+    BD$.
+
+    \begin{columns}
+      \column{.5\textwidth}
+        \begin{center}
+          \begin{asy}
+            pair A=(39,52), B=(39,-52), D=(-25,60), C=(-60,25);
+            label("$A$",A,N);
+            label("$B$",B,SE);
+            label("$C$",C,W);
+            label("$D$",D,NW);
+            pair P=A+(C-A)/length(C-A)*length(B-A)*length(D-C)/length(B-D);
+            label("$P$",P,N);
+            draw(A--B--P--A--D--C--B--D);
+            draw(C--P);
+            draw(circumcircle(A,B,C));
+          \end{asy}
+        \end{center}
+        \pause
+      \column{.5\textwidth}
+        \begin{itemize}
+          \item $\triangle ABP\sim\triangle DBC$ \pause
+          \item $\triangle ABD\sim\triangle PBC$ \pause
+          \item $AB\times CD+BC\times AD$ \\ $=AC\times BD$
+        \end{itemize}
+    \end{columns}
+  \end{frame}
+  \begin{frame}[fragile]
+    \frametitle{Diameter of the incircle}
+    Let $ABC$ be a triangle with incentre $I$ and $A$-excentre $I_A$. Let the
+    incircle touch $BC$ at $D$ and the $A$-excircle touch $BC$ at $E$. Let $P$
+    be the reflection of $D$ over $I$.
+
+    Prove that $P$ is on $AE$. \pause
+    
+    Construction: let $X$ be the tangency point of the incircle on $AB$, and let
+    $Y$ be the tangency point of the $A$-excircle on $AB$.
+    \begin{columns}
+      \column{.5\textwidth}
+        \begin{center}
+          \begin{asy}
+            pair A=(13,73)*0.6, B=(0,0), C=(100,0)*0.6;
+            pair I=incenter(A,B,C);
+            pair IA=(B-A)*(C-A)/(I-A)+A;
+            pair D=foot(I,B,C), Es=foot(IA,B,C);
+            pair P=2*I-D, X=foot(I,A,B), Y=foot(IA,A,B);
+            draw(Circle(I,length(D-I)));
+            draw(Circle(IA,length(Es-IA)));
+            draw(B--C);
+            draw(A--IA--Es);
+            draw(D--P);
+            draw(IA--Y--A--foot(IA,A,C));
+            draw(I--X);
+            draw(A--Es, dashed);
+            label("$A$",A,W);
+            label("$B$",B,W);
+            label("$C$",C,NE);
+            label("$D$",D,SW);
+            label("$I$",I,E);
+            label("$I_A$",IA,SE);
+            label("$E$",Es,N);
+            label("$P$",P,N);
+            label("$X$",X,W);
+            label("$Y$",Y,W);
+          \end{asy}
+        \end{center}
+        \pause
+      \column{.5\textwidth}
+        \begin{itemize}
+          \item $AXIP\sim AYI_AE$ \pause
+          \item $A,P,E$ collinear \pause
+          \item Alternatively, triangles $PIX$ and $EI_AY$ are homothetic
+        \end{itemize}
+    \end{columns}
+  \end{frame}
+  \begin{frame}[fragile]
+    \frametitle{Symmedian}
+    Let $ABC$ be a triangle with circumcircle $\Gamma$. Let the tangents to
+    $\Gamma$ at $B$ and $C$ intersect at $P$, and let the midpoint of $BC$ be
+    $M$. Prove that $\angle PAB=\angle MAC$.\pause
+
+    Construction: let $O$ be the centre of $\Gamma$, and let $D$ be the base
+    of the perpendicular from $A$ to $BC$.
+    \begin{columns}
+      \column{.5\textwidth}
+        \begin{center}
+          \begin{asy}
+            pair A=(13,73)/1.1, B=(0,0), C=(100,0)/1.1;
+            pair O=circumcenter(A,B,C);
+            draw(circumcircle(A,B,C));
+            pair M=(B+C)/2;
+            pair P=length(B-O)*length(B-O)/(length(M-O)*length(M-O))*(M-O)+O;
+            pair D=foot(A,B,C);
+            draw(D--A--B--C--A--O--P--B);
+            draw(M--A--P--C--O);
+            label("$A$",A,NW);
+            label("$B$",B,SW);
+            label("$C$",C,SE);
+            label("$D$",D,S);
+            label("$O$",O,W);
+            label("$M$",M,SE);
+            label("$P$",P,E);
+            draw(rightanglemark(P,M,B,5));
+            draw(rightanglemark(O,C,P,5));
+            draw(rightanglemark(A,D,B,5));
+          \end{asy}
+        \end{center}
+        \pause
+      \column{.5\textwidth}
+        \begin{itemize}
+          \item $\triangle OAM\sim\triangle OPA$ \pause
+          \item $\angle OAM=\angle DAP$ \pause
+          \item $\angle BAD=\angle OAC$ \pause
+          \item $\angle BAP=\angle MAC$ 
+        \end{itemize}
+    \end{columns}
+  \end{frame}
+  \begin{frame}[fragile]
+    \frametitle{Symmedian}
+    Let $ABC$ be a triangle with circumcircle $\Gamma$. Let the tangents to
+    $\Gamma$ at $B$ and $C$ intersect at $P$, and let the midpoint of $BC$ be
+    $M$. Prove that $\angle BAP=\angle MAC$.\pause
+
+    Construction: let $X$ be the point such that $\triangle ABX$ is directly
+    similar to $\triangle APC$. Let $M'$ be the intersection of $AX$ and $BC$.
+    \begin{columns}
+      \column{.5\textwidth}
+        \begin{center}
+          \begin{asy}
+            pair A=(13,73)/1.1, B=(0,0), C=(100,0)/1.1;
+            draw(circumcircle(A,B,C));
+            pair O=circumcenter(A,B,C);
+            pair M=(B+C)/2;
+            pair P=length(B-O)*length(B-O)/(length(M-O)*length(M-O))*(M-O)+O;
+            pair X=(B-A)*(C-A)/(P-A)+A;
+            label("$A$",A,NW);
+            label("$B$",B,SW);
+            label("$C$",C,SE);
+            label("$M'$",M,SE);
+            label("$P$",P,E);
+            label("$X$",X,S);
+            draw(A--B--C--A--P--B--X--C--P);
+            draw(A--M);
+          \end{asy}
+        \end{center}
+        \pause
+      \column{.5\textwidth}
+        \begin{itemize}
+          \item $\angle M'BA=\angle M'XB$ \pause
+          \item $M'B^2=M'A\times M'X$ \pause
+          \item $M'C^2=M'A\times M'X$ \pause
+          \item $\angle BAP=\angle MAC$
+        \end{itemize}
+    \end{columns}
+  \end{frame}
+  \begin{frame}[fragile]
+    \frametitle{Harmonic quad}
+    Let $ABC$ be a triangle. Let $Q$ be a point such that the circumcircle of
+    $AQB$ is tangent to $AC$ and the circumcircle of $AQC$ is tangent to $AB$.
+    Let $D$ be the reflection of $A$ over $Q$. Prove that $ABCD$ is cyclic and
+    $AB\times CD=BD\times AC$. \pause
+    \begin{columns}
+      \column{.5\textwidth}
+        \begin{center}
+          \begin{asy}
+            pair A=(13,73)/1.1, B=(0,0), C=(100,0)/1.1;
+            pair O=circumcenter(A,B,C);
+            pair Y=B+C-A;
+            pair Q=(B-A)*(C-A)/(Y-A)+A;
+            pair D=2*Q-A;
+            label("$A$",A,NW);
+            label("$B$",B,SW);
+            label("$C$",C,SE);
+            label("$Q$",Q,E);
+            label("$D$",D,SW);
+            draw(Arc(circumcenter(A,Q,B),B,A));
+            draw(Arc(circumcenter(A,Q,C),A,C));
+            draw(D--C--Q--B--D--A--B--C--A);
+            add(pathticks(A--Q));
+            add(pathticks(Q--D));
+          \end{asy}
+        \end{center}
+        \pause
+      \column{.5\textwidth}
+        \begin{itemize}
+          \item $\triangle DQB\sim\triangle CQD$ \pause
+          \item $\angle BAC+\angle BDC=180^\circ$ \pause
+          \item $AB\times CD=BD\times AC$
+        \end{itemize}
+    \end{columns}
+  \end{frame}
+  \begin{frame}[fragile]
+    \frametitle{Symmedian}
+    Let $ABC$ be a triangle. Let $P$ be the intersection of the tangents from
+    $B$ and $C$ to the circumcircle of $ABC$. 
+    Let $Q$ be a point such that the circumcircle of
+    $AQB$ is tangent to $AC$ and the circumcircle of $AQC$ is tangent to $AB$.
+    
+    Prove that $A, P, Q$ are collinear. \pause
+
+    Constructions: define $D$ as previously. Let $O$ be the circumcentre of
+    $ABC$.
+    \begin{columns}
+      \column{.5\textwidth}
+        \begin{center}
+          \begin{asy}
+            pair A=(13,73)*0.7, B=(0,0), C=(100,0)*0.7;
+            draw(circumcircle(A,B,C));
+            pair O=circumcenter(A,B,C);
+            pair Y=B+C-A;
+            pair Q=(B-A)*(C-A)/(Y-A)+A;
+            pair D=2*Q-A;
+            pair M=(B+C)/2;
+            pair P=(B-O)*(C-O)/(M-O)+O;
+            label("$A$",A,NW);
+            label("$B$",B,SW);
+            label("$C$",C,SE);
+            label("$Q$",Q,W);
+            label("$D$",D,SW);
+            label("$P$",P,E);
+            label("$O$",O,N);
+            draw(Arc(circumcenter(A,Q,B),B,A));
+            draw(Arc(circumcenter(A,Q,C),A,C));
+            add(pathticks(A--Q));
+            add(pathticks(Q--D));
+            draw(A--B--C--O--B--Q--C--D--B--P--C--A--D);
+            draw(O--Q);
+          \end{asy}
+        \end{center}
+        \pause
+      \column{.5\textwidth}
+        \begin{itemize}
+          \item $\angle OQA=90^\circ$ \pause
+          \item $BPCOQ$ cyclic \pause
+          \item $A,Q,P$ collinear
+        \end{itemize}
+    \end{columns}
+  \end{frame}
+  \begin{frame}[fragile]
+    \frametitle{Symmedian}
+    Let $ABC$ be a triangle. Let $Q$ be a point such that the circumcircle of
+    $AQB$ is tangent to $AC$ and the circumcircle of $AQC$ is tangent to $AB$.
+    Let $M$ be the midpoint of $BC$.
+    Prove that $\angle BAQ=\angle MAC$. \pause
+
+    Construction: let $Y$ be the point such that $\triangle ABY$ is directly
+    similar to $\triangle AQC$.
+    \begin{columns}
+      \column{.5\textwidth}
+        \begin{center}
+          \begin{asy}
+            pair A=(13,73)/1.1, B=(0,0), C=(100,0)/1.1;
+            draw(circumcircle(A,B,C));
+            pair O=circumcenter(A,B,C);
+            pair Y=B+C-A;
+            pair Q=(B-A)*(C-A)/(Y-A)+A;
+            label("$A$",A,NW);
+            label("$B$",B,SW);
+            label("$C$",C,SE);
+            label("$Q$",Q,S);
+            label("$Y$",Y,E);
+            draw(Y--A--B--Y--C--Q--B--C--A--Q);
+            draw(Arc(circumcenter(A,Q,B),B,A));
+            draw(Arc(circumcenter(A,Q,C),A,C));
+          \end{asy}
+        \end{center}
+        \pause
+      \column{.5\textwidth}
+        \begin{itemize}
+          \item $\angle AYB=\angle YAC$ \pause
+          \item $\angle AYC=\angle YAB$ \pause
+          \item $A, M, Y$ collinear \pause
+          \item $\angle BAQ=\angle MAC$
+        \end{itemize}
+    \end{columns}
+  \end{frame}
+  \begin{frame}[fragile]
+    \frametitle{Butterfly}
+    Let $ABCD$ be a cyclic quadrilateral with circumcentre $O$, and let $AC$ 
+    and $BD$ intersect at $P$. A line through $P$ intersects $AB$ and $CD$ at
+    $E$ and $F$, such that $OP$ is perpendicular to $EF$.
+
+    Prove that $P$ is the midpoint of $EF$. \pause
+
+    Constructions: let $M$ and $N$ be the midpoints of $AB$ and $CD$
+    respectively.
+    \begin{columns}
+      \column{.5\textwidth}
+        \begin{center}
+          \begin{asy}
+            pair A=(39,52), B=(39,-52), C=(-60,-25);
+            pair O=(0,0);
+            pair P=A+0.36*(C-A);
+            pair D=intersectionpoint(B--(2*P-B),Circle(O,length(A)));
+            label("$A$",A,N);
+            label("$B$",B,SE);
+            label("$C$",C,W);
+            label("$D$",D,NW);
+            draw(A--B--C--D--cycle);
+            draw(A--C);
+            draw(B--D);
+            label("$P$",P,N);
+            draw(Circle(O,length(A)));
+            draw(O--P);
+            pair Q=P*(0,1)+P;
+            pair E=extension(P,Q,A,B), F=extension(P,Q,C,D);
+            draw(E--F);
+            label("$F$",F,NW);
+            label("$O$",O,S);
+            label("$E$",E,NE);
+            pair M=(A+B)/2, N=(C+D)/2;
+            draw(M--O--N--P--M);
+            draw(E--O--F);
+            label("$M$",M,SE);
+            label("$N$",N,W);
+          \end{asy}
+        \end{center}
+        \pause
+      \column{.5\textwidth}
+        \begin{itemize}
+          \item $\triangle DPN\sim\triangle APM$ \pause
+          \item $\triangle FOP\cong\triangle EOP$
+        \end{itemize}
+    \end{columns}
+  \end{frame}
+  \begin{frame}[fragile]
+    \frametitle{Generalised Movie Theorem}
+    Let $ABC$ and $PQR$ be directly similar triangles. If $X, Y, Z$ are points
+    such that triangles $APX,\ BQY,\ CRZ$ are directly similar, then prove that
+    $\triangle XYZ$ is also directly similar to triangles $ABC$ and $PQR$.
+    \pause
+
+    Construction: let $O$ be a point such that $\triangle OBC\overset
+    +\sim\triangle OQR$.
+    \begin{columns}
+      \column{.5\textwidth}
+        \begin{center}
+          \begin{asy}
+            unitsize(15);
+            pair A=(0,0), B=(1.1,1.6), C=(0.76,4.14), P=(4.16,-0.68),
+            Q=(4.98,2.44), X=(2.1,1.2);
+            pair R=(Q-P)*(C-A)/(B-A)+P, Y=(Q-B)*(X-A)/(P-A)+B,
+            Z=(Y-X)*(C-A)/(B-A)+X;
+            pair M=extension(B,C,Y,Z);
+            pair Nn=intersectionpoints(circumcircle(B,Y,M),
+            circumcircle(C,Z,M))[1];
+            draw(A--B--C--A, red);
+            draw(P--Q--R--P, red);
+            draw(X--Y--Z--X, red);
+            draw(A--P--X--A, green);
+            draw(B--Q--Y--B, green);
+            draw(C--R--Z--C, green);
+            draw(C--Nn--Z);
+            draw(B--Nn--Y);
+            label("$A$",A,SW);
+            label("$B$",B,S);
+            label("$C$",C,W);
+            label("$P$",P,SE);
+            label("$Q$",Q,E);
+            label("$R$",R,N);
+            label("$X$",X,E);
+            label("$Y$",Y,NE);
+            label("$Z$",Z,NE);
+            label("$O$",Nn,W);
+          \end{asy}
+        \end{center}
+        \pause
+      \column{.5\textwidth}
+        \begin{itemize}
+          \item $OABC\sim OPQR$ \pause
+          \item $OAPX\sim OBQY\sim OCRZ$ \pause
+          \item $OABC\sim OXYZ\sim OPQR$ \pause
+        \end{itemize}
+        Note: $O$ is the centre of each of the \emph{spiral similarities}
+        sending a coloured triangle to another of the same colour.
+    \end{columns}
+  \end{frame}
+\end{document}

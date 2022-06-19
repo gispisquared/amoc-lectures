@@ -1,0 +1,167 @@
+\documentclass{article}
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath}
+\title{I --- Congruence and Similarity}
+\author{Andres Buritica}
+\date{December 8, 2021}
+\begin{document}
+\maketitle
+\section{Intro}
+  \subsection{Congruence}
+    \begin{itemize}
+      \item We say that triangles $ABC$ and $XYZ$ are \emph{congruent} if $$BC=YZ,\ CA=ZX,\
+      AB=XY,\ \angle BAC=\angle YXZ,$$
+      $$\angle ABC=\angle XYZ,\ \angle ACB=\angle XZY.$$
+
+    \item If all of these conditions are true then we can write $$\triangle
+      ABC\cong\triangle XYZ.$$ We also know that $|ABC| = |XYZ|$.
+      
+    \item (SSS) If $BC=YZ,\ CA=ZX,\ AB=XY$ then $\triangle ABC\cong\triangle XYZ$.
+    \item (SAS) If $AB=XY,\ \angle ABC=\angle XYZ,\ BC=YZ$ then $\triangle
+      ABC\cong\triangle XYZ$.
+    \item (AAS) If $\angle ABC=\angle XYZ,\ \angle BCA=\angle YZX,\ BC=YZ$ then $\triangle
+      ABC\cong\triangle XYZ$.
+    \item (SSA doesn't work) If $AB=XY,\ BC=YZ,\ \angle BCA=\angle YZX$ then you don't necessarily know
+      $\triangle ABC\cong\triangle XYZ$.
+    \item (fixed SSA) If $AB=XY,\ BC=YZ,\ \angle BCA=\angle YZX$ \textbf{and $AB>BC$} then
+      $\triangle ABC\cong\triangle XYZ$.
+    \item (RHS) If $AB=XY,\ BC=YZ,\ \angle BCA=\angle YZX=90^\circ$ then $\triangle
+      ABC\cong\triangle XYZ$.
+  \end{itemize}
+  \subsection{Similarity}
+  \begin{itemize}
+    \item We say that triangles $ABC$ and $XYZ$ are \emph{similar} if
+      $$\frac{BC}{YZ}=\frac{CA}{ZX}=\frac{AB}{XY}=r,$$
+      $$\angle ABC=\angle XYZ,\
+      \angle BCA=\angle YZX,\ \angle CAB=\angle ZXY.$$
+
+    \item If all of these conditions are true then we can write $$\triangle
+      ABC\sim\triangle XYZ.$$ We also know that $\frac{|ABC|}{|XYZ|}=r^2$.
+
+    \item Triangles can be directly similar ($\overset +\sim$) or oppositely
+      similar ($\overset -\sim$).
+
+    \item (PPP) If $\frac{BC}{YZ}=\frac{CA}{ZX}=\frac{AB}{XY}$ then $\triangle ABC\sim\triangle XYZ$.
+    \item (PAP) If $\frac{AB}{XY}=\frac{BC}{YZ},\ \angle ABC=\angle XYZ$ then $\triangle
+      ABC\sim\triangle XYZ$.
+    \item (AA) If $\angle ABC=\angle XYZ,\ \angle BCA=\angle YZX$ then $\triangle
+      ABC\sim\triangle XYZ$.
+    \item (PPA doesn't work) If $\frac{AB}{XY}=\frac{BC}{YZ},\ \angle BCA=\angle YZX$ then you don't necessarily know
+      $\triangle ABC\sim\triangle XYZ$.
+    \item (fixed PPA) If $\frac{AB}{XY}=\frac{BC}{YZ},\ \angle BCA=\angle YZX$ \textbf{and $AB>BC$} then
+      $\triangle ABC\sim\triangle XYZ$.
+    \item (RHS) If $\frac{AB}{XY}=\frac{BC}{YZ},\ \angle BCA=\angle YZX=90^\circ$ then $\triangle
+      ABC\sim\triangle XYZ$.
+  \end{itemize}
+\section{Lemmas}
+All of these are ``well-known'' diagrams that you should learn to recognise as
+subconfigurations of problems. However, the ideas used in their proofs are at
+least as important as the configurations themselves.
+\begin{enumerate}
+  \item (Isosceles triangle) 
+    Let $ABC$ be a triangle. Prove that $AB=AC$ if and only if $\angle
+    ABC=\angle ACB$. 
+  \item (Power of a point)
+    Let $ABCD$ be a cyclic quadrilateral, and let $AC$ and $BD$ meet at $P$.
+    Prove that $PA\times PC=PB\times PD$. 
+  \item (Similar switch)
+    Let $ABC$ and $ADE$ be triangles that are directly similar.
+    Prove that $\triangle ABD$ and $\triangle ACE$ are also directly similar.
+  \item (Ice cream cone theorem)
+    Let $PA$ and $PB$ be tangents to a circle. Prove that $PA=PB$.
+  \item (Similar figures)
+    Let points $ABCDWXYZ$ be such that $\triangle ABC\overset +\sim\triangle WXY$ and
+    $\triangle BCD\overset +\sim\triangle XYZ$. Prove that $\triangle
+    ABD\sim\triangle WXZ$ and $\triangle ACD\sim\triangle
+    WYZ$.
+
+    In this case, we can say that $ABCD\overset +\sim WXYZ$.
+  \item (Menelaus' Theorem) 
+    Let $ABC$ be a triangle. Let $X,Y,Z$ be collinear points on sides
+    $BC,CA$ and $AB$
+    respectively. Prove that \[\frac{AZ}{ZB}\times\frac{BX}{XC}\times\frac{CY}{YX}=-1.\]
+  \item (Homothetic triangles)
+    Let $ABC$ and $XYZ$ be two triangles such that $BC||YZ,\ CA||ZX$ and $AB||XY$.
+    Prove that $AX,\ BY$ and $CZ$ are concurrent.
+  \item (Pythagoras' Theorem) 
+    Let $ABC$ be a triangle such that $\angle BAC=90^\circ$. Prove that
+    $AB^2+AC^2=BC^2$. 
+  \item (Diagonals of a parallelogram)
+    Let $ABCD$ be a parallelogram (that is, $AB||CD$ and $BC||DA$). Let $AC$
+    intersect $BD$ at $P$. Prove that $P$ is the midpoint of $AC$ and of $BD$.
+  \item (Alternate segment switch) 
+    Let $A,B,C$ be collinear points, and let $D,E$ be points such that $AD=AE$.
+    Prove that if $\angle ADB=\angle ACD$ then $\angle AEB=\angle ACE$. 
+  \item (Ptolemy's Theorem) 
+    Let $ABCD$ be points in that order around a circle. Prove that $AB\times
+    CD+BC\times AD=AC\times BD$. 
+  \item (Diameter of the incircle)
+    Let $ABC$ be a triangle with incentre $I$ and $A$-excentre $I_A$. Let the
+    incircle touch $BC$ at $D$ and the $A$-excircle touch $BC$ at $E$. Let $P$
+    be the reflection of $D$ over $I$. Prove that $P$ is on $AE$. 
+  \item (Symmedian)
+    Let $ABC$ be a triangle with circumcircle $\Gamma$. Let the tangents to
+    $\Gamma$ at $B$ and $C$ intersect at $P$, and let the midpoint of $BC$ be
+    $M$. Prove that $\angle MAB=\angle PAC$.
+  \item (Harmonic quadrilateral)
+    Let $ABC$ be a triangle. Let $Q$ be a point such that the circumcircle of
+    $AQB$ is tangent to $AC$ and the circumcircle of $AQC$ is tangent to $AB$.
+    Let $D$ be the reflection of $A$ over $Q$. Prove that $ABCD$ is cyclic and
+    $AB\times CD=BD\times AC$. 
+  \item (Symmedian)
+    Let $ABC$ be a triangle. Let $P$ be the intersection of the tangents from
+    $B$ and $C$ to the circumcircle of $ABC$. 
+    Let $Q$ be a point such that the circumcircle of
+    $AQB$ is tangent to $AC$ and the circumcircle of $AQC$ is tangent to $AB$.
+    Prove that $A, P, Q$ are collinear. 
+  \item (Symmedian)
+    Let $ABC$ be a triangle. Let $Q$ be a point such that the circumcircle of
+    $AQB$ is tangent to $AC$ and the circumcircle of $AQC$ is tangent to $AB$.
+    Let $M$ be the midpoint of $BC$.
+    Prove that $\angle BAQ=\angle MAC$. 
+  \item (Butterfly Theorem)
+    Let $ABCD$ be a cyclic quadrilateral with circumcentre $O$, and let $AC$ 
+    and $BD$ intersect at $P$. A line through $P$ intersects $AB$ and $CD$ at
+    $E$ and $F$, such that $OP$ is perpendicular to $EF$. Prove that $P$ is the midpoint of $EF$. 
+  \item (Generalised Movie Theorem)
+    Let $ABC$ and $PQR$ be directly similar triangles. If $X, Y, Z$ are points
+    such that triangles $APX,\ BQY$ and $CRZ$ are directly similar, then prove that
+    $\triangle XYZ$ is also directly similar to triangles $ABC$ and $PQR$.
+\end{enumerate}
+\section{Problems}
+Many of these are stolen from PST, but if you're inters you can't have done
+that much of PST so it's fine right?
+\begin{enumerate}
+  \item Let $ABC$ be a triangle with circumcentre $O$, orthocentre $H$, centroid
+    $G$ and nine-point centre $N$. Prove that $H,G,N,O$ are collinear with
+    $OG:GN:NH=2:1:3$.
+  \item Let $ABC$ be a triangle with $AB<AC$, and let $P$ be a point on segment
+    $AC$ such that $AB=CP$. Prove that the perpendicular bisectors of $BC$ and
+    $AP$ meet on the circumcircle of $ABC$.
+  \item Let $ABCDE$ be a convex pentagon such that $\angle BAC=\angle CAD=\angle
+    DAE$ and $\angle ABC=\angle ACD=\angle ADE$. The diagonals $BD$ and $CE$
+    meet at $P$. Prove that the line $AP$ passes through the midpoint of $CD$.
+  \item Let $ABC$ be a triangle with orthocentre $H$. Prove that the
+    circumcentres of triangles $BCH,\ CAH$ and $ABH$ form a triangle congruent
+    to $\triangle ABC$.
+  \item Let $ABC$ be a triangle and let $P$ be a point on line $BC$. Let $Q$ and
+    $R$ be points on lines $CA$ and $AB$ respectively, such that $QP=QC$ and
+    $RP=RB$. Prove that the circumcircle of $\triangle AQR$ passes through the
+    circumcentre of $\triangle ABC$.
+  \item Let $ABC$ be a triangle with circumcentre $O$ and incentre $I$. Let $R$
+    and $r$ be the circumradius and inradius of $\triangle ABC$ respectively. Prove that $R^2-OI^2=2Rr$.
+  \item Let $P$ be a point inside triangle $ABC$ such that $\angle PBA=\angle
+    PCA$. Let $Q$ and $R$ be the feet of
+    the perpendiculars from $P$ to sides $AB$ and $AC$, and let $M$ be the
+    midpoint of $AB$. Prove that $MQ=MR$.
+  \item Let $P$ and $Q$ be on segment $BC$ of an acute triangle $ABC$ such that
+    $\angle PAB=\angle BCA$ and $\angle CAQ=\angle ABC$. Let $M$ an $N$ be the
+    points on $AP$ and $AQ$, respectively, such that $P$ is the midpoint of $AN$
+    and $Q$ is the midpoint of $AN$. Prove that the intersection of $BM$ and
+    $CN$ is on the circumcircle of triangle $ABC$.
+  \item Let $ABC$ be a triangle, and let points $M$ and $N$ be on rays $AB$ and
+    $AC$ respectively such that $AM=AN=BC$. Let $O$ be the point such that
+    $AMON$ is a parallelogram. Prove that if $O$ is the $A$-excentre of triangle
+    $ABC$, then $\triangle ABC$ is isosceles.
+\end{enumerate}
+\end{document}
